@@ -98,7 +98,7 @@ namespace GillSoft.ConsoleApplicationFramework
         /// </summary>
         public void ShowErrors()
         {
-
+            throw new NotImplementedException();
         }
 
         private List<string> errors = new List<string>();

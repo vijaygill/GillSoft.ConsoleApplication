@@ -16,12 +16,22 @@ namespace GillSoft.ConsoleApplicationFramework
     {
         private readonly IUnityContainer container;
         private ILogger logger;
+        private readonly IApplication app;
 
         void IApplication.Run(Action<ILogger, IApplication> callback)
         {
             try
             {
-                callback(logger, this);
+                var commandlineArguments = app.Resolve<ICommandlineArguments>();
+
+                if(commandlineArguments.Help)
+                {
+                    commandlineArguments.ShowHelp();
+                }
+                else
+                {
+                    callback(logger, this);
+                }
             }
             catch (Exception ex)
             {
@@ -29,7 +39,7 @@ namespace GillSoft.ConsoleApplicationFramework
             }
             finally
             {
-                if(System.Diagnostics.Debugger.IsAttached)
+                if (System.Diagnostics.Debugger.IsAttached)
                 {
                     Console.Write("Press RETURN to close (This messages apppears only while debugging)...");
                     Console.ReadLine();
@@ -51,13 +61,13 @@ namespace GillSoft.ConsoleApplicationFramework
         {
             this.container = new UnityContainer();
 
+            this.app = this as IApplication;
+
             RegisterTypes();
         }
 
         private void RegisterTypes()
         {
-            var app = this as IApplication;
-
             app.RegisterInstance<IApplication>(this);
 
             if (!app.IsRegistered<IOutput>())

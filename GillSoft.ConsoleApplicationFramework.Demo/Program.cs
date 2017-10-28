@@ -20,6 +20,10 @@ namespace GillSoft.ConsoleApplicationFramework.Demo
             logger.Error("My application");
             logger.Info("My application");
             logger.Warn("My application");
+
+            var appconfig = application.Resolve<IApplicationConfiguration>();
+            logger.Info("format: " + appconfig.Get("format", "word"));
+            logger.Info("sendmail: " + appconfig.Get("sendmail", "false"));
         }
     }
 }

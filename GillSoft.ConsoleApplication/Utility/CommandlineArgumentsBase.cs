@@ -12,6 +12,8 @@ namespace GillSoft.ConsoleApplication
     /// </summary>
     public abstract class CommandlineArgumentsBase : ICommandlineArguments
     {
+        private readonly Arguments arguments = new Arguments(Environment.CommandLine);
+
         /// <summary>
         /// Show help.
         /// </summary>
@@ -53,7 +55,8 @@ namespace GillSoft.ConsoleApplication
         /// <returns></returns>
         protected string Get(string name, string defaultValue)
         {
-            throw new NotImplementedException();
+            var res = arguments.Exists(name) ? arguments.Single(name) : defaultValue;
+            return res;
         }
 
         /// <summary>
@@ -63,7 +66,8 @@ namespace GillSoft.ConsoleApplication
         /// <returns></returns>
         protected bool IsTrue(string name)
         {
-            throw new NotImplementedException();
+            var res = arguments.IsTrue(name);
+            return res;
         }
 
         /// <summary>

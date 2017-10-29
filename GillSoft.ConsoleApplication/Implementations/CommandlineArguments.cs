@@ -9,8 +9,8 @@ namespace GillSoft.ConsoleApplication.Implementations
     internal class CommandlineArguments : CommandlineArgumentsBase
     {
 
-        public CommandlineArguments(ILogger logger)
-            : base(logger)
+        public CommandlineArguments(ILogger logger, IOutput output)
+            : base(logger, output)
         {
 
         }

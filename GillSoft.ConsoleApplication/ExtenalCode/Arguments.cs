@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-/// <summary>
-/// Arguments class
-/// </summary>
 using System.Text;
 using System.Text.RegularExpressions;
-public class Arguments
+
+/// <summary>
+/// Arguments class.
+/// </summary>
+internal class Arguments
 {
     /// <summary>
     /// Splits the command line. When main(string[] args) is used escaped quotes (ie a path "c:\folder\")
@@ -57,6 +58,10 @@ public class Arguments
     private readonly Dictionary<string, Collection<string>> _parameters;
     private string _waitingParameter;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="commandLine"></param>
     public Arguments(string commandLine)
         : this(SplitCommandLine(commandLine))
     {

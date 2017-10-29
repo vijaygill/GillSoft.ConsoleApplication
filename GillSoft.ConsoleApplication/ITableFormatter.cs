@@ -16,16 +16,19 @@ namespace GillSoft.ConsoleApplication
         /// Define a column
         /// </summary>
         /// <param name="columnHeader">Text shown as header of the column</param>
-        /// <param name="maxwidth">Maximum width of the column</param>
+        /// <param name="maxWidth">Maximum width of the column</param>
         /// <param name="valueGetter">Lambda expression to get value for a cell in the given column</param>
         /// <returns></returns>
-        ITableFormatter<T> Column(string columnHeader, int maxwidth, Func<T, string> valueGetter);
+        ITableFormatter<T> Column(string columnHeader, int maxWidth, Func<T, string> valueGetter);
 
         /// <summary>
         /// Prints the passed list in table format.
         /// </summary>
+        /// <param name="output"></param>
         /// <param name="collection"></param>
-        void Print(IEnumerable<T> collection);
+        /// <param name="title"></param>
+        /// <param name="headers"></param>
+        void Print(IOutput output, IEnumerable<T> collection, string title, params string[] headers);
 
     }
 }

@@ -33,16 +33,21 @@ namespace GillSoft.ConsoleApplication
         /// Constructor.
         /// </summary>
         /// <param name="logger"></param>
-        public CommandlineArgumentsBase(ILogger logger)
+        /// <param name="output"></param>
+        public CommandlineArgumentsBase(ILogger logger, IOutput output)
         {
             this.logger = logger;
+            this.output = output;
         }
 
 
         internal static class ParameterNames
         {
+            [Description("Show help")]
             public static readonly string Help = @"h";
+            [Description("Show detailed messages")]
             public static readonly string Verbose = @"v";
+            [Description("Show even more detailed messages")]
             public static readonly string Verbose2 = @"vv";
         }
 
@@ -93,7 +98,7 @@ namespace GillSoft.ConsoleApplication
                 .AsTableFormatter()
                 .Column("Name", 20, a => a.Name)
                 .Column("Help", 50, a => a.Help)
-                .Print();
+                .Print(output, "Help");
             ;
         }
 
@@ -107,6 +112,7 @@ namespace GillSoft.ConsoleApplication
 
         private List<string> errors = new List<string>();
         private readonly ILogger logger;
+        private readonly IOutput output;
 
         /// <summary>
         /// Check validity of commandline parameters.

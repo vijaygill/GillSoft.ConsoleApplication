@@ -1,11 +1,11 @@
-﻿using GillSoft.ConsoleApplicationFramework.Implementations;
+﻿using GillSoft.ConsoleApplication.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GillSoft.ConsoleApplicationFramework
+namespace GillSoft.ConsoleApplication
 {
     /// <summary>
     /// extension methods class

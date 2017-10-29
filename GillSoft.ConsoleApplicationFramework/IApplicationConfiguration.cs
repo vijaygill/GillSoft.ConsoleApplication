@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GillSoft.ConsoleApplicationFramework
+namespace GillSoft.ConsoleApplication
 {
     /// <summary>
     /// Interface to implemented by App.config reader class.

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GillSoft.ConsoleApplicationFramework", "GillSoft.ConsoleApplicationFramework\GillSoft.ConsoleApplicationFramework.csproj", "{A2A517ED-D61C-42A0-8F18-17AAC32AC600}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GillSoft.ConsoleApplication", "GillSoft.ConsoleApplicationFramework\GillSoft.ConsoleApplication.csproj", "{A2A517ED-D61C-42A0-8F18-17AAC32AC600}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GillSoft.ConsoleApplicationFramework.Demo", "GillSoft.ConsoleApplicationFramework.Demo\GillSoft.ConsoleApplicationFramework.Demo.csproj", "{716263CB-C7ED-4BA3-B598-0DC9244F1250}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GillSoft.ConsoleApplication.Demo", "GillSoft.ConsoleApplicationFramework.Demo\GillSoft.ConsoleApplication.Demo.csproj", "{716263CB-C7ED-4BA3-B598-0DC9244F1250}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

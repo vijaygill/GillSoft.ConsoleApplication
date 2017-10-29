@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GillSoft.ConsoleApplicationFramework
+namespace GillSoft.ConsoleApplication
 {
     /// <summary>
     /// Interface implemented by a list that can be printed in table format.

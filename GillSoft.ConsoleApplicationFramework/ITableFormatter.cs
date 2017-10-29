@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GillSoft.ConsoleApplicationFramework
+namespace GillSoft.ConsoleApplication
 {
     /// <summary>
     /// Interface implemented by class that can print a list in table format.

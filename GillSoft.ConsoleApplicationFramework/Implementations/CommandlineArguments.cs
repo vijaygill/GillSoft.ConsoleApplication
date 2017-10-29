@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GillSoft.ConsoleApplicationFramework.Implementations
+namespace GillSoft.ConsoleApplication.Implementations
 {
     internal class CommandlineArguments : CommandlineArgumentsBase
     {

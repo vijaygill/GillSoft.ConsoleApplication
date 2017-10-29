@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GillSoft.ConsoleApplicationFramework.Demo")]
+[assembly: AssemblyTitle("GillSoft.ConsoleApplication.Demo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GillSoft.ConsoleApplicationFramework.Demo")]
+[assembly: AssemblyProduct("GillSoft.ConsoleApplication.Demo")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

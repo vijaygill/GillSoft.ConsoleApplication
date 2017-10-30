@@ -44,12 +44,12 @@ namespace GillSoft.ConsoleApplication.Implementations
             return this;
         }
 
-        void ITableFormatter<T>.Print(IOutput output, IEnumerable<T> collection, string title, params string[] headers)
+        void ITableFormatter<T>.Print(IOutput output, IEnumerable<T> collection, string title, int indent = 0, params string[] headers)
         {
-            this.Print(output, collection, title, headers);
+            this.Print(output, collection, title, indent, headers);
         }
 
-        private void Print(IOutput output, IEnumerable<T> collection, string title, params string[] headers)
+        private void Print(IOutput output, IEnumerable<T> collection, string title, int indent = 0, params string[] headers)
         {
             if (!columns.Any())
             {
@@ -57,29 +57,32 @@ namespace GillSoft.ConsoleApplication.Implementations
             }
             var dash = '-';
             var sep = '|';
+            var space = ' ';
             var plus = "+";
             var titlePrefix = "[ ";
             var titleSuffix = " ]";
 
+            var indentStr = indent > 0 ? new string(space, indent) : string.Empty;
+
             var totalLength = columns.Sum(a => a.MaxWidth) + (columns.Count - 1);
-            totalLength = totalLength + (totalLength % 2);
 
             var tableTitle = titlePrefix + title + titleSuffix;
 
             var titleDashLengthLeft = (totalLength - tableTitle.Length) / 2;
-            var titleDashLengthRight = (totalLength - tableTitle.Length) / 2;
+            var titleDashLengthRight = (totalLength - tableTitle.Length) / 2 + totalLength % 2;
 
-            var fullLine = string.Join(plus, columns.Select(c => new string(dash, c.MaxWidth)));
+            var solidLine = new string(dash, totalLength);
+            var lineWithSeparators = string.Join(plus, columns.Select(c => new string(dash, c.MaxWidth)));
 
             var titleDashLeft = new string(dash, titleDashLengthLeft);
             var titleDashRight = new string(dash, titleDashLengthRight);
 
             //header
-            output.WriteLine(string.Format("{0}{1}{2}", titleDashLeft, tableTitle, titleDashRight));
-            output.WriteLine(fullLine);
-            var columnHeaders = string.Join(sep.ToString(), columns.Select(c => string.Format("{0,-" + c.MaxWidth + "}", c.ColumnHeader)));
-            output.WriteLine(columnHeaders);
-            output.WriteLine(fullLine);
+            output.WriteLine(indentStr + string.Format("{0}{1}{2}", titleDashLeft, tableTitle, titleDashRight));
+            output.WriteLine(indentStr + lineWithSeparators);
+            var columnHeaders = string.Join(sep.ToString(), columns.Select(c => string.Format("{0,-" + c.MaxWidth + "}", c.ColumnHeader.Justify(StringJustify.Center, c.MaxWidth))));
+            output.WriteLine(indentStr + columnHeaders);
+            output.WriteLine(indentStr + lineWithSeparators);
 
             var format = string.Join(plus, columns.Select((c, index) => "{" + (index) + "," + c.MaxWidth + "}"));
 
@@ -88,12 +91,12 @@ namespace GillSoft.ConsoleApplication.Implementations
                 foreach (var item in collection)
                 {
                     var values = string.Join(sep.ToString(), columns.Select(c => string.Format("{0,-" + c.MaxWidth + "}", c.ValueGetter(item))));
-                    output.WriteLine(values);
+                    output.WriteLine(indentStr + values);
                 }
             }
 
             //footer
-            output.WriteLine(fullLine);
+            output.WriteLine(indentStr + solidLine);
 
         }
 
@@ -103,9 +106,9 @@ namespace GillSoft.ConsoleApplication.Implementations
             return this;
         }
 
-        void ITableFormattedPrintableList<T>.Print(IOutput output, string title, params string[] headers)
+        void ITableFormattedPrintableList<T>.Print(IOutput output, string title, int indent = 0, params string[] headers)
         {
-            this.Print(output, this.collection, title, headers);
+            this.Print(output, this.collection, title, indent, headers);
         }
     }
 }

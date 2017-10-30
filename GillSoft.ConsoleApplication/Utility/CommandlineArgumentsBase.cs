@@ -98,7 +98,7 @@ namespace GillSoft.ConsoleApplication
                 .AsTableFormatter()
                 .Column("Name", 20, a => a.Name)
                 .Column("Help", 50, a => a.Help)
-                .Print(output, "Help");
+                .Print(output, "Help", 4);
             ;
         }
 

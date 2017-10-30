@@ -23,5 +23,46 @@ namespace GillSoft.ConsoleApplication
             var res = new TableFormatter<T>(collection);
             return res;
         }
+
+        /// <summary>
+        /// Returns a string justified left/right/center within a given width
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="stringJustify"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string Justify(this string value, StringJustify stringJustify, int length)
+        {
+            var res = value;
+            if (value != null && length > value.Length)
+            {
+                switch (stringJustify)
+                {
+                    case StringJustify.Left:
+                        {
+                            var padLength = (length - value.Length) / 2;
+                            var pad = padLength > 0 ? new string(' ', padLength) : string.Empty;
+                            res = value + pad;
+                            break;
+                        }
+                    case StringJustify.Right:
+                        {
+                            var padLength = (length - value.Length) / 2;
+                            var pad = padLength > 0 ? new string(' ', padLength) : string.Empty;
+                            res = pad + value;
+                            break;
+                        }
+                    case StringJustify.Center:
+                        {
+                            var padLength = (length - value.Length) / 2;
+                            var pad = padLength > 0 ? new string(' ', padLength) : string.Empty;
+                            res = pad + value;
+                            break;
+                        }
+                }
+            }
+
+            return res;
+        }
     }
 }

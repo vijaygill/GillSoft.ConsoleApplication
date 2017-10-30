@@ -7,15 +7,6 @@
         <owners>GillSoft Limited</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>GillSoft.ConsoleApplication library by GillSoft. It supports dependency injection using Unity.</description>
-        <dependencies>
-            <group />
-            <group targetFramework=".NETFramework4.0">
-                <dependency id="Newtonsoft.Json" version="[10.0.3]" />
-            </group>
-            <group targetFramework=".NETFramework4.6.2">
-                <dependency id="Newtonsoft.Json" version="[10.0.3]" />
-            </group>
-        </dependencies>
     </metadata>
     <files>
         <file src=".\GillSoft.ConsoleApplication\bin\Release\GillSoft.ConsoleApplication.dll" target="lib\net462\GillSoft.ConsoleApplication.dll" />

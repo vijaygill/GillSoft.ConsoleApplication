@@ -10,6 +10,6 @@
     </metadata>
     <files>
         <file src=".\GillSoft.ConsoleApplication\bin\Release\GillSoft.ConsoleApplication.dll" target="lib\net462\GillSoft.ConsoleApplication.dll" />
-        <file src="GillSoft.ConsoleApplication\bin\Release\GillSoft.ConsoleApplication.xml" target="lib\net462\GillSoft.ConsoleApplication.xml" />
+        <file src=".\GillSoft.ConsoleApplication\bin\Release\GillSoft.ConsoleApplication.xml" target="lib\net462\GillSoft.ConsoleApplication.xml" />
     </files>
 </package>

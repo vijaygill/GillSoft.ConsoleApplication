@@ -61,6 +61,7 @@ namespace GillSoft.ConsoleApplication.Implementations
             var sep = '|';
             var space = ' ';
             var plus = "+";
+            var headerPrefix = "* ";
             var titlePrefix = "[ ";
             var titleSuffix = " ]";
 
@@ -73,7 +74,6 @@ namespace GillSoft.ConsoleApplication.Implementations
             var titleDashLengthLeft = (totalLength - tableTitle.Length) / 2;
             var titleDashLengthRight = (totalLength - tableTitle.Length) / 2 + totalLength % 2;
 
-            var solidLine = new string(dash, totalLength);
             var lineWithSeparators = string.Join(plus, columns.Select(c => new string(dash, c.MaxWidth)));
 
             var titleDashLeft = new string(dash, titleDashLengthLeft);
@@ -81,7 +81,14 @@ namespace GillSoft.ConsoleApplication.Implementations
 
             //header
             output.WriteLine(indentStr + string.Format("{0}{1}{2}", titleDashLeft, tableTitle, titleDashRight));
-            output.WriteLine(indentStr + lineWithSeparators);
+            if (headers != null && headers.Any())
+            {
+                foreach (var header in headers)
+                {
+                    output.WriteLine(indentStr + headerPrefix + header);
+                }
+                output.WriteLine(indentStr + lineWithSeparators);
+            }
             var columnHeaders = string.Join(sep.ToString(), columns.Select(c => string.Format("{0,-" + c.MaxWidth + "}", c.ColumnHeader.Justify(StringJustify.Center, c.MaxWidth))));
             output.WriteLine(indentStr + columnHeaders);
             output.WriteLine(indentStr + lineWithSeparators);
@@ -98,7 +105,7 @@ namespace GillSoft.ConsoleApplication.Implementations
             }
 
             //footer
-            output.WriteLine(indentStr + solidLine);
+            output.WriteLine(indentStr + lineWithSeparators);
 
         }
 

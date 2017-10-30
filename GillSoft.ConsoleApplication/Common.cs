@@ -31,6 +31,14 @@ namespace GillSoft.ConsoleApplication
     /// </summary>
     public static class Common
     {
+        /// <summary>
+        /// Default exit code if all goes well
+        /// </summary>
+        public static readonly int DefaultExitCodeWithSuccess = 0;
 
+        /// <summary>
+        /// Default exit code if user-code does not handle exit properly in case or error.
+        /// </summary>
+        public static readonly int DefaultExitCodeWithError = byte.MaxValue;
     }
 }

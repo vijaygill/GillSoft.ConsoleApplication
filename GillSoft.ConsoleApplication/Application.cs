@@ -16,16 +16,19 @@ namespace GillSoft.ConsoleApplication
     public sealed class Application : IApplication
     {
         private readonly IUnityContainer container;
-        private ILogger logger;
+        private readonly ILogger logger;
         private readonly IApplication app;
+
+        private int? exitCode;
 
         void IApplication.Run(Action<ILogger, IApplication> callback)
         {
+            var exitCodeToReturn = Common.DefaultExitCodeWithSuccess;
             try
             {
                 var commandlineArguments = app.Resolve<ICommandlineArguments>();
 
-                if(commandlineArguments.Help)
+                if (commandlineArguments.Help)
                 {
                     commandlineArguments.ShowHelp();
                 }
@@ -36,16 +39,19 @@ namespace GillSoft.ConsoleApplication
             }
             catch (Exception ex)
             {
+                exitCodeToReturn = Common.DefaultExitCodeWithError;
                 logger.Error("Exception in Run", ex);
             }
             finally
             {
+                exitCodeToReturn = exitCode.HasValue ? exitCode.Value : exitCodeToReturn;
                 if (System.Diagnostics.Debugger.IsAttached)
                 {
                     Console.Write("Press RETURN to close (This messages apppears only while debugging)...");
                     Console.ReadLine();
                 }
             }
+            Environment.Exit(exitCodeToReturn);
         }
 
         /// <summary>
@@ -65,6 +71,8 @@ namespace GillSoft.ConsoleApplication
             this.app = this as IApplication;
 
             RegisterTypes();
+
+            this.logger = app.Resolve<ILogger>();
         }
 
         private void RegisterTypes()
@@ -96,7 +104,6 @@ namespace GillSoft.ConsoleApplication
                 app.RegisterType<ICommandlineArguments, CommandlineArguments>();
             }
 
-            this.logger = app.Resolve<ILogger>();
         }
 
         bool IApplication.IsRegistered<T>()
@@ -119,6 +126,11 @@ namespace GillSoft.ConsoleApplication
         void IApplication.RegisterType<TFrom, TTo>()
         {
             this.container.RegisterType<TFrom, TTo>();
+        }
+
+        void IApplication.SetExitCode(int exitCode)
+        {
+            this.exitCode = exitCode;
         }
     }
 }

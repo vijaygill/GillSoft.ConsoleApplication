@@ -44,5 +44,11 @@ namespace GillSoft.ConsoleApplication
         /// <typeparam name="T">Interface</typeparam>
         /// <returns></returns>
         T Resolve<T>();
+
+        /// <summary>
+        /// Sets exit code if user-code needs to return some status to OS.
+        /// </summary>
+        /// <param name="exitCode"></param>
+        void SetExitCode(int exitCode);
     }
 }

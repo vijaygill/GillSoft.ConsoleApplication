@@ -22,8 +22,13 @@ namespace GillSoft.ConsoleApplication
         /// </summary>
         /// <param name="output"></param>
         /// <param name="title"></param>
-        /// <param name="indent"></param>
         /// <param name="headers"></param>
-        void Print(IOutput output, string title, int indent = 0, params string[] headers);
+        void Print(IOutput output, string title, params string[] headers);
+
+        /// <summary>
+        /// Sets indent from left side of the screen.
+        /// </summary>
+        /// <param name="indent"></param>
+        ITableFormattedPrintableList<T> SetIndent(int indent);
     }
 }

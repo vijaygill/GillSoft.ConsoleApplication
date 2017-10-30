@@ -98,7 +98,8 @@ namespace GillSoft.ConsoleApplication
                 .AsTableFormatter()
                 .Column("Name", 20, a => a.Name)
                 .Column("Help", 50, a => a.Help)
-                .Print(output, "Help", 4);
+                .SetIndent(4)
+                .Print(output, "Help");
             ;
         }
 

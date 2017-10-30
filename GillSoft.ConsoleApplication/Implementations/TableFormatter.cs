@@ -12,6 +12,8 @@ namespace GillSoft.ConsoleApplication.Implementations
 
         private readonly List<Colummn> columns = new List<Colummn>();
 
+        private int indent = 0;
+
         public TableFormatter(IEnumerable<T> collection)
         {
             this.collection = collection;
@@ -44,12 +46,12 @@ namespace GillSoft.ConsoleApplication.Implementations
             return this;
         }
 
-        void ITableFormatter<T>.Print(IOutput output, IEnumerable<T> collection, string title, int indent = 0, params string[] headers)
+        void ITableFormatter<T>.Print(IOutput output, IEnumerable<T> collection, string title, params string[] headers)
         {
-            this.Print(output, collection, title, indent, headers);
+            this.Print(output, collection, title, headers);
         }
 
-        private void Print(IOutput output, IEnumerable<T> collection, string title, int indent = 0, params string[] headers)
+        private void Print(IOutput output, IEnumerable<T> collection, string title, params string[] headers)
         {
             if (!columns.Any())
             {
@@ -106,9 +108,21 @@ namespace GillSoft.ConsoleApplication.Implementations
             return this;
         }
 
-        void ITableFormattedPrintableList<T>.Print(IOutput output, string title, int indent = 0, params string[] headers)
+        void ITableFormattedPrintableList<T>.Print(IOutput output, string title, params string[] headers)
         {
-            this.Print(output, this.collection, title, indent, headers);
+            this.Print(output, this.collection, title, headers);
+        }
+
+        ITableFormatter<T> ITableFormatter<T>.SetIndent(int indent)
+        {
+            this.indent = indent;
+            return this;
+        }
+
+        ITableFormattedPrintableList<T> ITableFormattedPrintableList<T>.SetIndent(int indent)
+        {
+            this.indent = indent;
+            return this;
         }
     }
 }

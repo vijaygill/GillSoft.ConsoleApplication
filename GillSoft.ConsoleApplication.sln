@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{EA05B1
 	ProjectSection(SolutionItems) = preProject
 		build-release.proj = build-release.proj
 		GillSoft.ConsoleApplication.nuspec = GillSoft.ConsoleApplication.nuspec
+		MergeThirdPartyAssemblies-GillSoft.ConsoleApplication.target = MergeThirdPartyAssemblies-GillSoft.ConsoleApplication.target
 	EndProjectSection
 EndProject
 Global

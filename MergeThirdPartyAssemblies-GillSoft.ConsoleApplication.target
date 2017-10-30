@@ -10,7 +10,7 @@
   </ItemGroup>
   <Target Name="MergeThirdPartyAssemblies" Condition="'$(Configuration)'!='Debug'">
     <Message Text="Merging assemblies..." Importance="high"/>
-    <Exec Command="&quot;C:\Dev\000-DevTools\BuildTools\ILRepack.exe&quot; /lib:$(TargetDir) /parallel /verbose /out:&quot;@(MainAssembly)&quot; &quot;@(IntermediateAssembly)&quot; @(MergedGSLibraryItems->'&quot;%(Identity)&quot;', ' ')"/>
+    <Exec Command="&quot;$(ilrepack)&quot; /lib:$(TargetDir) /parallel /verbose /out:&quot;@(MainAssembly)&quot; &quot;@(IntermediateAssembly)&quot; @(MergedGSLibraryItems->'&quot;%(Identity)&quot;', ' ')"/>
     <Exec Command="del @(MergedGSLibraryItems->'&quot;%(Identity)&quot;', ' ')"/>
   </Target>
 

@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GillSoft.ConsoleApplication
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GillSoft.ConsoleApplication.Demo", "GillSoft.ConsoleApplication.Demo\GillSoft.ConsoleApplication.Demo.csproj", "{716263CB-C7ED-4BA3-B598-0DC9244F1250}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{EA05B11F-E687-48F4-9C7A-6BF68BD7E6E7}"
+	ProjectSection(SolutionItems) = preProject
+		build-release.proj = build-release.proj
+		GillSoft.ConsoleApplication.nuspec = GillSoft.ConsoleApplication.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

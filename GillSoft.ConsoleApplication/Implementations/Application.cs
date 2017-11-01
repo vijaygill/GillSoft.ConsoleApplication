@@ -8,16 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity;
 
-namespace GillSoft.ConsoleApplication
+namespace GillSoft.ConsoleApplication.Implementations
 {
     /// <summary>
     /// Concrete Application class.
     /// </summary>
-    public sealed class Application : IApplication
+    internal class Application : IApplication, IContainer
     {
-        private readonly IUnityContainer container;
         private readonly ILogger logger;
-        private readonly IApplication app;
+        private readonly IContainer container;
 
         private int? exitCode;
 
@@ -26,7 +25,7 @@ namespace GillSoft.ConsoleApplication
             var exitCodeToReturn = Common.DefaultExitCodeWithSuccess;
             try
             {
-                var commandlineArguments = app.Resolve<ICommandlineArguments>();
+                var commandlineArguments = container.Resolve<ICommandlineArguments>();
 
                 if (commandlineArguments.Help)
                 {
@@ -54,83 +53,75 @@ namespace GillSoft.ConsoleApplication
             Environment.Exit(exitCodeToReturn);
         }
 
-        /// <summary>
-        /// Creates an instance of Application
-        /// </summary>
-        /// <returns></returns>
-        public static IApplication Create()
+        public Application() : this(new Container())
         {
-            var res = new Application();
-            return res;
         }
 
-        private Application()
+        public Application(IContainer container)
         {
-            this.container = new UnityContainer();
-
-            this.app = this as IApplication;
+            this.container = container;
 
             RegisterTypes();
 
-            this.logger = app.Resolve<ILogger>();
+            this.logger = container.Resolve<ILogger>();
         }
 
         private void RegisterTypes()
         {
-            app.RegisterInstance<IApplication>(this);
+            container.RegisterInstance<IApplication>(this);
 
-            if (!app.IsRegistered<IOutput>())
+            if (!container.IsRegistered<IOutput>())
             {
-                app.RegisterType<IOutput, ConsoleOutput>();
+                container.RegisterType<IOutput, ConsoleOutput>();
             }
 
-            if (!app.IsRegistered<ILogger>())
+            if (!container.IsRegistered<ILogger>())
             {
-                app.RegisterType<ILogger, ConsoleLogger>();
+                container.RegisterType<ILogger, ConsoleLogger>();
             }
 
-            if (!app.IsRegistered<IApplicationConfiguration>())
+            if (!container.IsRegistered<IApplicationConfiguration>())
             {
-                app.RegisterType<IApplicationConfiguration, ApplicationConfigurationBase>();
+                container.RegisterType<IApplicationConfiguration, ApplicationConfigurationBase>();
             }
 
-            if (!app.IsRegistered<IApplicationConfiguration>())
+            if (!container.IsRegistered<IApplicationConfiguration>())
             {
-                app.RegisterType<IApplicationConfiguration, ApplicationConfigurationBase>();
+                container.RegisterType<IApplicationConfiguration, ApplicationConfigurationBase>();
             }
 
-            if (!app.IsRegistered<ICommandlineArguments>())
+            if (!container.IsRegistered<ICommandlineArguments>())
             {
-                app.RegisterType<ICommandlineArguments, CommandlineArguments>();
+                container.RegisterType<ICommandlineArguments, CommandlineArguments>();
             }
 
-        }
-
-        bool IApplication.IsRegistered<T>()
-        {
-            var res = container.IsRegistered<T>();
-            return res;
-        }
-
-        void IApplication.RegisterInstance<TInterface>(TInterface instance)
-        {
-            this.container.RegisterInstance<TInterface>(instance);
-        }
-
-        T IApplication.Resolve<T>()
-        {
-            var res = this.container.Resolve<T>();
-            return res;
-        }
-
-        void IApplication.RegisterType<TFrom, TTo>()
-        {
-            this.container.RegisterType<TFrom, TTo>();
         }
 
         void IApplication.SetExitCode(int exitCode)
         {
             this.exitCode = exitCode;
+        }
+
+        bool IContainer.IsRegistered<T>()
+        {
+            var res = container.IsRegistered<T>();
+            return res;
+        }
+
+        void IContainer.RegisterInstance<TInterface>(TInterface instance)
+        {
+            this.container.RegisterInstance<TInterface>(instance);
+        }
+
+        T IContainer.Resolve<T>()
+        {
+            var res = this.container.Resolve<T>();
+            return res;
+        }
+
+        void IContainer.RegisterType<TFrom, TTo>()
+        {
+            this.container.RegisterType<TFrom, TTo>();
         }
     }
 }

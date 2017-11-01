@@ -67,14 +67,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
+    <Compile Include="ApplicationFactory.cs" />
+    <Compile Include="Implementations\Application.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ExtenalCode\Arguments.cs" />
     <Compile Include="IApplication.cs" />
     <Compile Include="IApplicationConfiguration.cs" />
     <Compile Include="ICommandlineArguments.cs" />
+    <Compile Include="IContainer.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="Implementations\CommandlineArguments.cs" />
+    <Compile Include="Implementations\Container.cs" />
     <Compile Include="Implementations\TableFormatter.cs" />
     <Compile Include="ITableFormattedPrintableList.cs" />
     <Compile Include="ITableFormatter.cs" />

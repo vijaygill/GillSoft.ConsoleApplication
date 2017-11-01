@@ -10,7 +10,7 @@ namespace GillSoft.ConsoleApplication.Demo
     {
         static void Main(string[] args)
         {
-            var app = Application.Create();
+            var app = ApplicationFactory.Create();
             app.Run(Callback);
         }
 

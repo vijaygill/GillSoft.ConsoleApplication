@@ -32,12 +32,12 @@ namespace GillSoft.ConsoleApplication
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="logger"></param>
-        /// <param name="output"></param>
-        public CommandlineArgumentsBase(ILogger logger, IOutput output)
+        /// <param name="application"></param>
+        protected CommandlineArgumentsBase(IApplication application)
         {
-            this.logger = logger;
-            this.output = output;
+            this.application = application;
+            this.logger = application.Resolve<ILogger>();
+            this.output = application.Resolve<IOutput>();
         }
 
 
@@ -95,10 +95,10 @@ namespace GillSoft.ConsoleApplication
                     Name = "" + f.GetValue(null),
                     Help = f.GetCustomAttributes(typeof(DescriptionAttribute), true).Cast<DescriptionAttribute>().Select(a => a.Description).FirstOrDefault(),
                 })
-                .AsTableFormatter()
+                .AsTableFormatter(this.output)
                 .Column("Name", 20, a => a.Name)
                 .Column("Help", 50, a => a.Help)
-                .Print(output, "Help");
+                .Print("Help");
             ;
         }
 
@@ -111,6 +111,7 @@ namespace GillSoft.ConsoleApplication
         }
 
         private List<string> errors = new List<string>();
+        private readonly IApplication application;
         private readonly ILogger logger;
         private readonly IOutput output;
 

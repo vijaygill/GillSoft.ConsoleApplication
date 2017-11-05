@@ -21,17 +21,5 @@ namespace GillSoft.ConsoleApplication
             var res = new Application();
             return res;
         }
-
-
-        /// <summary>
-        /// Creates an instance of Application which uses a custom DI/IOC container instead of built-in one.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public static IApplication Create(IContainer container)
-        {
-            var res = new Application(container);
-            return res;
-        }
     }
 }

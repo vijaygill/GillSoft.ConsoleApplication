@@ -17,10 +17,11 @@ namespace GillSoft.ConsoleApplication
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="collection"></param>
+        /// <param name="output"></param>
         /// <returns></returns>
-        public static ITableFormattedPrintableList<T> AsTableFormatter<T>(this IEnumerable<T> collection)
+        public static ITableFormattedPrintableList<T> AsTableFormatter<T>(this IEnumerable<T> collection, IOutput output)
         {
-            var res = new TableFormatter<T>(collection);
+            var res = new TableFormatter<T>(output, collection);
             return res;
         }
 

@@ -20,10 +20,9 @@ namespace GillSoft.ConsoleApplication
         /// <summary>
         /// Prints the passed list in table format.
         /// </summary>
-        /// <param name="output"></param>
         /// <param name="title"></param>
         /// <param name="headers"></param>
-        void Print(IOutput output, string title, params string[] headers);
+        void Print(string title, params string[] headers);
 
         /// <summary>
         /// Sets indent from left side of the screen.

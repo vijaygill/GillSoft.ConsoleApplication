@@ -13,10 +13,10 @@ namespace GillSoft.ConsoleApplication.Implementations
     /// <summary>
     /// Concrete Application class.
     /// </summary>
-    internal class Application : IApplication, IContainer
+    internal class Application : IApplication
     {
+        private readonly IUnityContainer container;
         private readonly ILogger logger;
-        private readonly IContainer container;
 
         private int? exitCode;
 
@@ -53,13 +53,9 @@ namespace GillSoft.ConsoleApplication.Implementations
             Environment.Exit(exitCodeToReturn);
         }
 
-        public Application() : this(new Container())
+        internal Application()
         {
-        }
-
-        public Application(IContainer container)
-        {
-            this.container = container;
+            this.container = new UnityContainer();
 
             RegisterTypes();
 
@@ -102,26 +98,28 @@ namespace GillSoft.ConsoleApplication.Implementations
             this.exitCode = exitCode;
         }
 
-        bool IContainer.IsRegistered<T>()
+        bool IApplication.IsRegistered<T>()
         {
             var res = container.IsRegistered<T>();
             return res;
         }
 
-        void IContainer.RegisterInstance<TInterface>(TInterface instance)
+        void IApplication.RegisterInstance<TInterface>(TInterface instance)
         {
             this.container.RegisterInstance<TInterface>(instance);
         }
 
-        T IContainer.Resolve<T>()
+        T IApplication.Resolve<T>()
         {
             var res = this.container.Resolve<T>();
             return res;
         }
 
-        void IContainer.RegisterType<TFrom, TTo>()
+        void IApplication.RegisterType<TFrom, TTo>()
         {
             this.container.RegisterType<TFrom, TTo>();
         }
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,9 @@ namespace GillSoft.ConsoleApplication.Demo
         static void Main(string[] args)
         {
             var app = ApplicationFactory.Create();
+
+            app.RegisterType<IArgs, Args>();
+
             app.Run(Callback);
         }
 
@@ -25,7 +29,11 @@ namespace GillSoft.ConsoleApplication.Demo
             logger.Info("format: " + appconfig.Get("format", "word"));
             logger.Info("sendmail: " + appconfig.Get("sendmail", "false"));
 
-            application.Resolve<ICommandlineArguments>().ShowHelp();
+            var cmdArgs = application.Resolve<IArgs>();
+            logger.Warn("Input file : " + cmdArgs.InFile);
+            logger.Warn("Output file: " + cmdArgs.OutFile);
+
+            application.Resolve<IArgs>().ShowHelp();
 
             new[]
             {
@@ -41,7 +49,7 @@ namespace GillSoft.ConsoleApplication.Demo
             );
         }
 
-        public interface IArgs
+        public interface IArgs : ICommandlineArguments
         {
             string InFile { get; }
             string OutFile { get; }
@@ -55,11 +63,11 @@ namespace GillSoft.ConsoleApplication.Demo
 
             }
 
-            public string InFile { get { return ParameterNames.InFile; } }
+            public string InFile { get { return base.Get(ParameterNames.InFile, string.Empty); } }
 
             public string OutFile
             {
-                get { return ParameterNames.OutFile; }
+                get { return base.Get(ParameterNames.OutFile, "DefaultOut.txt"); }
             }
 
             protected override Type GetHelpClassType()
@@ -69,7 +77,9 @@ namespace GillSoft.ConsoleApplication.Demo
 
             private static class ParameterNames
             {
+                [Description("Input file to be processed.")]
                 public static readonly string InFile = "i";
+                [Description("Outout file to be created.")]
                 public static readonly string OutFile = "o";
             }
         }

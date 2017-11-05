@@ -86,9 +86,10 @@ namespace GillSoft.ConsoleApplication
         /// </summary>
         public void ShowHelp()
         {
-            this.GetType().GetFields().Select(f => new { Index = 0, Name = f.Name, Field = f })
+            typeof(ParameterNames).GetFields().Select(f => new { Index = 0, Name = f.Name, Field = f })
                 .Concat(GetHelpClassType().GetFields().Select(f => new { Index = 0, Name = f.Name, Field = f }))
                 .GroupBy(f => f.Name).Select(g => g.OrderBy(gi => gi.Index).Last()).Select(f => f.Field)
+                .OrderBy(f => f.Name)
                 .Select(f => new
                 {
                     Name = "" + f.GetValue(null),

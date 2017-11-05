@@ -25,7 +25,7 @@ namespace GillSoft.ConsoleApplication.Implementations
             var exitCodeToReturn = Common.DefaultExitCodeWithSuccess;
             try
             {
-                var commandlineArguments = container.Resolve<ICommandlineArguments>();
+                var commandlineArguments = GetCommandLineArgumentsInstance();
 
                 if (commandlineArguments.Help)
                 {
@@ -51,6 +51,21 @@ namespace GillSoft.ConsoleApplication.Implementations
                 }
             }
             Environment.Exit(exitCodeToReturn);
+        }
+
+        private ICommandlineArguments GetCommandLineArgumentsInstance()
+        {
+            var overriddenType = container.Registrations
+                .Where(reg => typeof(ICommandlineArguments).IsAssignableFrom(reg.MappedToType)
+                && typeof(ICommandlineArguments).Assembly != reg.RegisteredType.Assembly)
+                .Select(a => a.RegisteredType)
+                .FirstOrDefault();
+
+            var res = overriddenType == null
+                ? container.Resolve<ICommandlineArguments>()
+                : container.Resolve(overriddenType) as ICommandlineArguments;
+
+            return res;
         }
 
         internal Application()

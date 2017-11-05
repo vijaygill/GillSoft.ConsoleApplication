@@ -1,11 +1,13 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <MergedGSLibraryItems Include="$(TargetDir)\CommonServiceLocator.dll" />
+    <MergedGSLibraryItems Include="$(TargetDir)\NLog.dll" />
     <MergedGSLibraryItems Include="$(TargetDir)\Unity.Abstractions.dll" />
     <MergedGSLibraryItems Include="$(TargetDir)\Unity.Configuration.dll" />
     <MergedGSLibraryItems Include="$(TargetDir)\Unity.Container.dll" />
     <MergedGSLibraryItems Include="$(TargetDir)\Unity.Interception.Configuration.dll" />
     <MergedGSLibraryItems Include="$(TargetDir)\Unity.Interception.dll" />
+    <MergedGSLibraryItems Include="$(TargetDir)\Unity.RegistrationByConvention.dll" />
     <MergedGSLibraryItems Include="$(TargetDir)\Unity.ServiceLocation.dll" />
   </ItemGroup>
   <Target Name="MergeThirdPartyAssemblies" Condition="'$(Configuration)'!='Debug'">

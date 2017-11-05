@@ -16,10 +16,10 @@ namespace GillSoft.ConsoleApplication.Demo
 
         private static void Callback(ILogger logger, IApplication application)
         {
-            logger.Debug("My application");
-            logger.Error("My application");
-            logger.Info("My application");
-            logger.Warn("My application");
+            logger.Debug("My application - DEBUG");
+            logger.Info("My application - INFO");
+            logger.Warn("My application - WARN");
+            logger.Error("My application - ERROR");
 
             var appconfig = application.Resolve<IApplicationConfiguration>();
             logger.Info("format: " + appconfig.Get("format", "word"));

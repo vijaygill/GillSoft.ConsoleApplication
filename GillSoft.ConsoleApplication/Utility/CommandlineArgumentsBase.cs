@@ -36,7 +36,6 @@ namespace GillSoft.ConsoleApplication
         protected CommandlineArgumentsBase(IApplication application)
         {
             this.application = application;
-            this.logger = application.Resolve<ILogger>();
             this.output = application.Resolve<IOutput>();
         }
 
@@ -112,7 +111,6 @@ namespace GillSoft.ConsoleApplication
 
         private List<string> errors = new List<string>();
         private readonly IApplication application;
-        private readonly ILogger logger;
         private readonly IOutput output;
 
         /// <summary>

@@ -40,5 +40,10 @@ namespace GillSoft.ConsoleApplication
         /// Default exit code if user-code does not handle exit properly in case or error.
         /// </summary>
         public static readonly int DefaultExitCodeWithError = byte.MaxValue;
+
+        /// <summary>
+        /// Log file expected by built-in logger based on NLog.
+        /// </summary>
+        public static readonly string NLogConfigurationFile = @"NLog.config";
     }
 }

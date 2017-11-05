@@ -73,7 +73,7 @@ namespace GillSoft.ConsoleApplication.Implementations
 
             if (!container.IsRegistered<ILogger>())
             {
-                container.RegisterType<ILogger, ConsoleLogger>();
+                container.RegisterType<ILogger, NLogLogger>();
             }
 
             if (!container.IsRegistered<IApplicationConfiguration>())

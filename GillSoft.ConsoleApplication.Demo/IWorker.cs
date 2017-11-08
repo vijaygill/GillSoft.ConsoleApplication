@@ -1,10 +1,7 @@
 ﻿namespace GillSoft.ConsoleApplication.Demo
 {
-    static partial class Program
+    public interface IWorker
     {
-        public interface IWorker
-        {
-            void DoSomeWork();
-        }
+        void DoSomeWork();
     }
 }

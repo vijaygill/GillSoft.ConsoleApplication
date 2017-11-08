@@ -59,8 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Args.cs" />
+    <Compile Include="IArgs.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="IWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

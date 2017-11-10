@@ -137,8 +137,36 @@ namespace GillSoft.ConsoleApplication.Implementations
 
         void IApplication.Run<T>(Action<T> callback)
         {
-            var instance = this.container.Resolve<T>();
-            callback(instance);
+            var exitCodeToReturn = Common.DefaultExitCodeWithSuccess;
+            try
+            {
+                var commandlineArguments = GetCommandLineArgumentsInstance();
+
+                if (commandlineArguments.Help)
+                {
+                    commandlineArguments.ShowHelp();
+                }
+                else
+                {
+                    var instance = this.container.Resolve<T>();
+                    callback(instance);
+                }
+            }
+            catch (Exception ex)
+            {
+                exitCodeToReturn = Common.DefaultExitCodeWithError;
+                logger.Error("Exception in Run", ex);
+            }
+            finally
+            {
+                exitCodeToReturn = exitCode.HasValue ? exitCode.Value : exitCodeToReturn;
+                if (System.Diagnostics.Debugger.IsAttached)
+                {
+                    Console.Write("Press RETURN to close (This messages apppears only while debugging)...");
+                    Console.ReadLine();
+                }
+            }
+            Environment.Exit(exitCodeToReturn);
         }
     }
 }

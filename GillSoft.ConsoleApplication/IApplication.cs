@@ -15,7 +15,16 @@ namespace GillSoft.ConsoleApplication
         /// Entry point to the application.
         /// </summary>
         /// <param name="callback"></param>
+        [Obsolete("Use Run<T>(Action<T> callabck)")]
         void Run(Action<ILogger, IApplication> callback);
+
+        /// <summary>
+        /// Resolves a type and calls the callback
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="callback"></param>
+        void Run<T>(Action<T> callback);
+
 
         /// <summary>
         /// Sets exit code if user-code needs to return some status to OS.

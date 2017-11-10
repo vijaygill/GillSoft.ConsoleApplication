@@ -14,13 +14,8 @@ namespace GillSoft.ConsoleApplication.Demo
             var app = ApplicationFactory.Create();
             app.RegisterType<IArgs, Args>();
             app.RegisterType<IWorker, Worker>();
-            app.Run(Callback);
-        }
+            app.Run<IWorker>(w => w.DoSomeWork());
 
-        private static void Callback(ILogger logger, IApplication application)
-        {
-            var worker = application.Resolve<IWorker>();
-            worker.DoSomeWork();
         }
     }
 }

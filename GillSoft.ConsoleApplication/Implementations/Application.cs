@@ -135,6 +135,10 @@ namespace GillSoft.ConsoleApplication.Implementations
             this.container.RegisterType<TFrom, TTo>();
         }
 
-
+        void IApplication.Run<T>(Action<T> callback)
+        {
+            var instance = this.container.Resolve<T>();
+            callback(instance);
+        }
     }
 }

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>GillSoft.ConsoleApplication</id>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
         <title>GillSoft.ConsoleApplication library by GillSoft.</title>
         <authors>Vijay Gill</authors>
         <owners>GillSoft Limited</owners>

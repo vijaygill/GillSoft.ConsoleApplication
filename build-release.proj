@@ -1,7 +1,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ilrepack>$(MSBuildProjectDirectory)\packages\ILRepack.2.0.13\tools\ILRepack.exe</ilrepack>
-    <nuget>$(MSBuildProjectDirectory)\packages\NuGet.CommandLine.4.3.0\tools\nuget.exe</nuget>
+    <ilrepack>$(MSBuildProjectDirectory)\packages\ILRepack.2.0.15\tools\ILRepack.exe</ilrepack>
+    <nuget>$(MSBuildProjectDirectory)\packages\NuGet.CommandLine.4.4.1\tools\nuget.exe</nuget>
     <solutionFileName>$(MSBuildProjectDirectory)\GillSoft.ConsoleApplication.sln</solutionFileName>
     <nuspec>$(MSBuildProjectDirectory)\GillSoft.ConsoleApplication.nuspec</nuspec>
   </PropertyGroup>

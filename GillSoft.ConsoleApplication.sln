@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GillSoft.ConsoleApplication", "GillSoft.ConsoleApplication\GillSoft.ConsoleApplication.csproj", "{A2A517ED-D61C-42A0-8F18-17AAC32AC600}"
 EndProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{EA05B1
 		GillSoft.ConsoleApplication.nuspec = GillSoft.ConsoleApplication.nuspec
 		MergeThirdPartyAssemblies-GillSoft.ConsoleApplication.target = MergeThirdPartyAssemblies-GillSoft.ConsoleApplication.target
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GillSoft.ConsoleApplication.Tests", "GillSoft.ConsoleApplication.Tests\GillSoft.ConsoleApplication.Tests.csproj", "{EB812549-BE30-436B-82C1-53D6C4683D34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +30,10 @@ Global
 		{716263CB-C7ED-4BA3-B598-0DC9244F1250}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{716263CB-C7ED-4BA3-B598-0DC9244F1250}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{716263CB-C7ED-4BA3-B598-0DC9244F1250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB812549-BE30-436B-82C1-53D6C4683D34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB812549-BE30-436B-82C1-53D6C4683D34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB812549-BE30-436B-82C1-53D6C4683D34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB812549-BE30-436B-82C1-53D6C4683D34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

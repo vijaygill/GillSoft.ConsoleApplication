@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unity;
+using Unity.Lifetime;
 
 namespace GillSoft.ConsoleApplication.Implementations
 {
@@ -17,6 +18,8 @@ namespace GillSoft.ConsoleApplication.Implementations
     {
         private readonly IUnityContainer container;
         private readonly ILogger logger;
+
+        private readonly IApplication app;
 
         private int? exitCode;
 
@@ -70,6 +73,8 @@ namespace GillSoft.ConsoleApplication.Implementations
 
         internal Application()
         {
+            this.app = this;
+
             this.container = new UnityContainer();
 
             RegisterTypes();
@@ -132,8 +137,22 @@ namespace GillSoft.ConsoleApplication.Implementations
 
         void IApplication.RegisterType<TFrom, TTo>()
         {
-            this.container.RegisterType<TFrom, TTo>();
+            app.RegisterType<TFrom, TTo>(InstanceScope.Transient);
         }
+
+        void IApplication.RegisterType<TFrom, TTo>(InstanceScope instanceScope)
+        {
+            var lifetimeManager = lifetimeManagers[instanceScope]();
+            container.RegisterType<TFrom, TTo>(lifetimeManager);
+        }
+
+        private readonly Dictionary<InstanceScope, Func<LifetimeManager>> lifetimeManagers
+             = new Dictionary<InstanceScope, Func<LifetimeManager>>
+             {
+                 { InstanceScope.Singleton, () => new ContainerControlledLifetimeManager() },
+                 { InstanceScope.PerResolve,() =>  new PerResolveLifetimeManager() },
+                 { InstanceScope.Transient, () => new TransientLifetimeManager() },
+             };
 
         void IApplication.Run<T>(Action<T> callback)
         {
@@ -168,5 +187,6 @@ namespace GillSoft.ConsoleApplication.Implementations
             }
             Environment.Exit(exitCodeToReturn);
         }
+
     }
 }

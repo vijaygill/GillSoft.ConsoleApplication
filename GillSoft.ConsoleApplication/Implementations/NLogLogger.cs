@@ -21,8 +21,11 @@ namespace GillSoft.ConsoleApplication.Implementations
         {
             this.commandlineArguments = commandlineArguments;
 
-            var configFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), Common.NLogConfigurationFile);
-            if (File.Exists(configFilePath))
+            var entryAssembly = Assembly.GetEntryAssembly();
+
+            var configFilePath = entryAssembly == null ? string.Empty : Path.Combine(Path.GetDirectoryName(entryAssembly.Location), Common.NLogConfigurationFile);
+
+            if (!string.IsNullOrWhiteSpace(configFilePath) && File.Exists(configFilePath))
             {
                 LogManager.Configuration = new XmlLoggingConfiguration(configFilePath);
             }

@@ -40,6 +40,14 @@ namespace GillSoft.ConsoleApplication
         void RegisterType<TFrom, TTo>() where TTo : TFrom;
 
         /// <summary>
+        /// Registers an interface and the concrete class with DI container.
+        /// </summary>
+        /// <typeparam name="TFrom"></typeparam>
+        /// <typeparam name="TTo"></typeparam>
+        /// <param name="instanceScope"><see cref="InstanceScope"/></param>
+        void RegisterType<TFrom, TTo>(InstanceScope instanceScope) where TTo : TFrom;
+
+        /// <summary>
         /// Registers an interface and an instance of a concrete class  with DI container.
         /// </summary>
         /// <typeparam name="TInterface">Interface</typeparam>

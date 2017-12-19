@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>GillSoft.ConsoleApplication</id>
-        <version>1.0.6</version>
+        <version>1.0.7</version>
         <title>GillSoft.ConsoleApplication library by GillSoft.</title>
         <authors>Vijay Gill</authors>
         <owners>GillSoft Limited</owners>
@@ -14,7 +14,7 @@ It supports dependency injection using Unity and Logging using NLog.</descriptio
         <copyright>GillSoft Limited 2017</copyright>
     </metadata>
     <files>
-        <file src=".\GillSoft.ConsoleApplication\bin\Release\GillSoft.ConsoleApplication.dll" target="lib\net462\GillSoft.ConsoleApplication.dll" />
-        <file src=".\GillSoft.ConsoleApplication\bin\Release\GillSoft.ConsoleApplication.xml" target="lib\net462\GillSoft.ConsoleApplication.xml" />
+        <file src=".\GillSoft.ConsoleApplication\bin\Release\GillSoft.ConsoleApplication.dll" target="lib\net452\GillSoft.ConsoleApplication.dll" />
+        <file src=".\GillSoft.ConsoleApplication\bin\Release\GillSoft.ConsoleApplication.xml" target="lib\net452\GillSoft.ConsoleApplication.xml" />
     </files>
 </package>

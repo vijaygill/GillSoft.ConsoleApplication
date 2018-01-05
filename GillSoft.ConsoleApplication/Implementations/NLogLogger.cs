@@ -35,7 +35,7 @@ namespace GillSoft.ConsoleApplication.Implementations
                 var consoleTarget = new ColoredConsoleTarget();
                 configuration.AddTarget("console", consoleTarget);
 
-                consoleTarget.Layout = @"${date:format=yyyy-MM-dd HH\:mm\:ss} ${level:uppercase=true} ${message}";
+                consoleTarget.Layout = @"${date:format=yyyy-MM-dd HH\:mm\:ss} ${level:uppercase=true} ${message} ${exception:format=toString,Data:maxInnerExceptionLevel=10}";
 
                 var logLevel = commandlineArguments.Verbose ? LogLevel.Info
                     : commandlineArguments.Verbose2 ? LogLevel.Debug

@@ -2,8 +2,8 @@
   <PropertyGroup>
     <ilrepack>$(MSBuildProjectDirectory)\packages\ILRepack.2.0.15\tools\ILRepack.exe</ilrepack>
     <nuget>$(MSBuildProjectDirectory)\nuget.exe</nuget>
-    <solutionFileName>$(MSBuildProjectDirectory)\GillSoft.ConsoleApplication.sln</solutionFileName>
-    <nuspec>$(MSBuildProjectDirectory)\GillSoft.ConsoleApplication.nuspec</nuspec>
+    <solutionFileName>$(MSBuildProjectDirectory)\GillSoft.Application.sln</solutionFileName>
+    <nuspec>$(MSBuildProjectDirectory)\GillSoft.Application.nuspec</nuspec>
   </PropertyGroup>
   <Target Name="Build">
     <Message Text="ILRepack: $(ilrepack)" />

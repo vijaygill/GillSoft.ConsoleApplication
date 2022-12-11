@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>GillSoft.Application</id>
+        <version>1.0.8</version>
+        <title>GillSoft.Application library by GillSoft.</title>
+        <authors>Vijay Gill</authors>
+        <owners>GillSoft Limited</owners>
+        <licenseUrl>https://raw.githubusercontent.com/GillSoftLimited/GillSoft.Application/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/GillSoftLimited/GillSoft.Application</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>GillSoft.Application library by GillSoft. It supports dependency injection using Unity and Logging using NLog.</description>
+        <copyright>GillSoft Limited 2017</copyright>
+    </metadata>
+    <files>
+        <file src=".\GillSoft.Application\bin\Release\GillSoft.Application.dll" target="lib\net452\GillSoft.Application.dll" />
+        <file src=".\GillSoft.Application\bin\Release\GillSoft.Application.xml" target="lib\net452\GillSoft.Application.xml" />
+    </files>
+</package>

@@ -1,6 +1,5 @@
 ﻿using GillSoft.Application;
 using GillSoft.Application.Implementations;
-using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -146,8 +145,8 @@ namespace GillSoft.Application.Implementations
             container.RegisterType<TFrom, TTo>(lifetimeManager);
         }
 
-        private readonly Dictionary<InstanceScope, Func<LifetimeManager>> lifetimeManagers
-             = new Dictionary<InstanceScope, Func<LifetimeManager>>
+        private readonly Dictionary<InstanceScope, Func<ITypeLifetimeManager>> lifetimeManagers
+             = new Dictionary<InstanceScope, Func<ITypeLifetimeManager>>
              {
                  { InstanceScope.Singleton, () => new ContainerControlledLifetimeManager() },
                  { InstanceScope.PerResolve,() =>  new PerResolveLifetimeManager() },

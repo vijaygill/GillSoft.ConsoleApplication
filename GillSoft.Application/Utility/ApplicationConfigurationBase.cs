@@ -1,8 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#if NET
+using Microsoft.Extensions.Configuration;
+#endif
+
 
 namespace GillSoft.Application
 {
@@ -11,6 +19,21 @@ namespace GillSoft.Application
     /// </summary>
     public class ApplicationConfigurationBase : IApplicationConfiguration
     {
+#if NETFRAMEWORK
+        private static NameValueCollection appSettings = ConfigurationManager.AppSettings;
+#else
+        private static IConfiguration appSettings;
+
+        static ApplicationConfigurationBase()
+        {
+            appSettings = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+        }
+#endif
+
+
         /// <summary>
         /// Returns value of a given key in app.config
         /// </summary>
@@ -19,12 +42,11 @@ namespace GillSoft.Application
         /// <returns></returns>
         public string Get(string key, string defaultValue)
         {
-            var res = System.Configuration.ConfigurationManager.AppSettings[key];
-            if(string.IsNullOrWhiteSpace(res))
+            var res = appSettings[key];
+            if (string.IsNullOrWhiteSpace(res))
             {
                 res = defaultValue;
             }
-
             return res;
         }
     }
